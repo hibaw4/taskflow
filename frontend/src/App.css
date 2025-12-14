@@ -109,7 +109,7 @@ button {
     color: white; 
     border: none; 
     padding: 14px 28px; /* Bigger button area */
-    border-radius: 50px; /* Fully rounded (Pill shape) */
+    border-radius: 8px; /* Fully rounded (Pill shape) */
     cursor: pointer; 
     font-weight: 700;
     font-size: 1rem;
@@ -208,6 +208,8 @@ button:hover {
 .task-info { display: flex; align-items: center; gap: 20px; cursor: pointer; flex: 1; }
 .task-info span { font-size: 18px; }
 
+
+
 /* Custom Checkbox */
 .custom-checkbox {
     width: 28px; height: 28px;
@@ -218,12 +220,278 @@ button:hover {
     transition: all 0.2s ease;
 }
 
+
 /* Completed State */
 .task-item.completed span { text-decoration: line-through; color: #aaa; }
 .task-item.completed .custom-checkbox {
     background: #27ae60;
     border-color: #27ae60;
 }
+
+/* --- Navbar Styles --- */
+
+/* 1. The Main Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Pushes Logo to left, User to right */
+    align-items: center;            /* Vertically centers everything */
+    padding: 0.8rem 2rem;
+    background-color: #2c3e50;      /* Dark Blue (Matches your screenshot) */
+    color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Nice shadow */
+    margin-bottom: 2rem;
+    text-decoration: none !important;
+}
+
+/* 2. Brand Name (TaskFlow) */
+.navbar-brand {
+    font-size: 1.8rem;      /* Bigger text */
+    font-weight: 800;       /* Bold */
+    color: white;           /* White color */
+    text-decoration: none !important;  /* 🚫 REMOVES UNDERLINE */
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+}
+
+.navbar-brand:hover {
+    color: white; /* Light blue on hover */
+    text-decoration: none !important;
+}
+
+/* 3. Right Side Container (User + Button) */
+/* 👇 THIS IS THE FIX for the side-by-side issue 👇 */
+.navbar-user-section {
+    display: flex;        /* Makes children sit in a row */
+    align-items: center;  /* Vertically aligns text with button */
+    gap: 1.5rem;          /* Space between "Hello User" and Button */
+}
+
+/* 4. Username Text */
+.navbar-username {
+    font-size: 1rem;
+    color: #ecf0f1;
+    font-weight: 500;
+}
+
+/* 5. Logout Icon Button */
+.logout-btn {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    /* border-radius: 50%; Makes it a circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+    color: #e74c3c;
+    box-shadow: none;
+    transform: scale(1.1);
+    background: transparent;
+}
+
+/* =========================================
+   TASK FORM UPDATES
+   ========================================= */
+
+/* The Container */
+.add-task-form {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 15px;
+    margin-bottom: 30px;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+/* Row for Title and Date */
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+/* Specific Inputs */
+.task-input-title {
+    flex: 2; /* Title takes up more space */
+    padding: 12px 15px;
+    border: 2px solid #eef2f5;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.task-input-date {
+    flex: 1; /* Date takes less space */
+    padding: 12px 15px;
+    border: 2px solid #eef2f5;
+    border-radius: 8px;
+    font-family: inherit;
+}
+
+.task-input-desc {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #eef2f5;
+    border-radius: 8px;
+    font-family: inherit;
+    resize: vertical; /* Allow user to stretch height */
+}
+
+/* Refined Add Button */
+.add-btn {
+    align-self: flex-start; /* Aligns button to left */
+    width: auto;
+    padding: 10px 25px;
+    font-size: 0.9rem;
+}
+
+/* =========================================
+   TASK LIST ITEM UPDATES
+   ========================================= */
+
+/* Better text alignment inside the task row */
+/* =========================================
+   1. SIMPLE STACKED TASK FORM
+   ========================================= */
+.tasks-section {
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.simple-task-form {
+    display: flex;
+    flex-direction: column; /* Forces vertical stacking */
+    gap: 12px;              /* Space between inputs */
+    margin-bottom: 40px;
+    max-width: 600px;       /* Prevents it from being too wide on large screens */
+}
+
+/* Uniform Input Styling */
+.simple-input {
+    padding: 12px 15px;
+    border: 2px solid #eef2f5;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+    width: 100%;
+}
+
+.simple-input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+/* Make the title input slightly more prominent */
+.main-input {
+    font-weight: 600;
+}
+
+/* Style the date picker */
+.date-input {
+    color: #7f8c8d;
+}
+
+/* Simple Add Button */
+.simple-add-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-top: 10px;
+    width: auto; /* Let it shrink to fit text */
+    align-self: flex-start; /* Align to the left */
+}
+.simple-add-btn:hover {
+    background-color: #3498db;
+    transform: translateY(-2px);
+    box-shadow: none;
+}
+
+
+/* =========================================
+   2. RESTRUCTURED TASK LIST ITEM
+   ========================================= */
+
+/* The main container for a single task row */
+.task-item { 
+    padding: 15px 20px; 
+    margin-bottom: 10px; 
+    border-radius: 12px;
+    background: #f9fbfd;
+    border: 1px solid #eef2f5;
+    display: flex; 
+    justify-content: space-between; /* Pushes left and right sides apart */
+    align-items: center; /* Centers them vertically */
+    transition: all 0.2s;
+}
+.task-item:hover { background-color: #f0f4f8; border-color: #dce4ec; }
+
+/* LEFT SIDE: Checkbox & Text */
+.task-left-side {
+    display: flex;
+    align-items: flex-start; /* Align checkbox with the first line of text */
+    gap: 15px;
+    cursor: pointer;
+    flex: 1; /* Takes available space pushing right side over */
+}
+
+.task-text-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-title {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #2c3e50;
+}
+
+.task-desc-preview {
+    margin: 4px 0 0 0;
+    font-size: 0.9rem;
+    color: #95a5a6;
+}
+
+/* RIGHT SIDE: Date & Delete Button */
+.task-right-side {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between date and delete X */
+}
+
+/* The Date on the right (No Icon) */
+.task-date-right {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    font-weight: 500;
+    white-space: nowrap; /* Keeps date on one line */
+}
+
+/* Custom Checkbox (Keep existing styles) */
+.custom-checkbox {
+    width: 24px; height: 24px; /* Slightly smaller */
+    border: 2px solid #cbd5e0; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; background: white;
+    font-size: 14px; flex-shrink: 0; /* Prevents squishing */
+    transition: all 0.2s ease;
+    margin-top: 2px; /* Align with text top */
+}
+
+/* Completed State Updates */
+.task-item.completed .task-title { text-decoration: line-through; color: #bdc3c7; }
+.task-item.completed .task-desc-preview { text-decoration: line-through; color: #dce0e0; }
+.task-item.completed .custom-checkbox { background: #27ae60; border-color: #27ae60; }
+
 
 .delete-project-btn {
     position: absolute;
@@ -256,3 +524,67 @@ button:hover {
 .delete-icon:hover { background: #fff0f0; color: #e74c3c; border-radius: 12px; transform: none; box-shadow: none; }
 
 .empty-state { text-align: center; color: #bdc3c7; font-style: italic; margin-top: 40px; font-size: 1.1rem; }
+
+.auth-container {
+    min-height: 100vh;           /* Takes full screen height */
+    background-color: #2c3e50;   /* MATCHES NAVBAR COLOR */
+    display: flex;
+    align-items: center;         /* Centers vertically */
+    justify-content: center;     /* Centers horizontally */
+    padding: 20px;
+}
+
+/* The White Card */
+.auth-card {
+    background: white;
+    width: 100%;
+    max-width: 500px;            /* Wider card */
+    padding: 3.5rem;             /* Big spacing inside */
+    border-radius: 20px;         /* Smooth corners */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2); /* Deep shadow */
+    text-align: center;
+}
+
+/* Big Heading */
+.auth-card h2 {
+    font-size: 2.8rem;           /* Much bigger text */
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-weight: 800;
+}
+
+/* Big Inputs */
+.auth-input {
+    width: 100%;
+    padding: 18px 25px;          /* Taller inputs */
+    font-size: 1.2rem;           /* Bigger typing text */
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;         /* Pill shape */
+    margin-bottom: 1.5rem;
+    background-color: #f9f9f9;
+    transition: all 0.2s;
+}
+
+.auth-input:focus {
+    border-color: #3498db;
+    background-color: white;
+    outline: none;
+}
+
+/* Link Text at bottom */
+.auth-footer {
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    color: #7f8c8d;
+}
+
+.auth-footer a {
+    color: #3498db;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}

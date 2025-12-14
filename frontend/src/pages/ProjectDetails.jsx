@@ -7,7 +7,11 @@ import Navbar from '../components/Navbar';
 function ProjectDetails() {
     const { id } = useParams();
     const [project, setProject] = useState(null);
+    
+    // State for Inputs
     const [newTaskTitle, setNewTaskTitle] = useState("");
+    const [newTaskDesc, setNewTaskDesc] = useState("");
+    const [newTaskDate, setNewTaskDate] = useState("");
 
     useEffect(() => {
         loadProject();
@@ -25,14 +29,18 @@ function ProjectDetails() {
     const handleAddTask = async (e) => {
         e.preventDefault();
         if (!newTaskTitle) return;
+
         try {
-            // Using a default due date for now (today)
             await createTask(id, { 
                 title: newTaskTitle, 
-                description: "", 
-                dueDate: new Date().toISOString().split('T')[0] 
+                description: newTaskDesc, 
+                dueDate: newTaskDate || null
             });
+
+            // Clear inputs
             setNewTaskTitle("");
+            setNewTaskDesc("");
+            setNewTaskDate("");
             loadProject(); 
         } catch (error) {
             alert("Failed to add task");
@@ -53,68 +61,78 @@ function ProjectDetails() {
 
     if (!project) return <div>Loading...</div>;
 
-    // CALCULATE STATS
-    const totalTasks = project.tasks.length;
-    const completedTasks = project.tasks.filter(t => t.completed).length;
+    const formatDate = (dateString) => {
+        if(!dateString) return "";
+        // Using localedateString for a simple, localized format like "12/31/2023"
+        return new Date(dateString).toLocaleDateString();
+    };
 
     return (
         <div className="page-container">
             <Navbar />
             <div className="content">
-                <Link to="/" className="back-link">← Back to Dashboard</Link>
+                <Link to="/Dashboard" className="back-link">← Back to Dashboard</Link>
                 
                 <div className="header-section">
                     <h1>{project.title}</h1>
                     <p>{project.description}</p>
                 </div>
 
-                {/* --- STATS CARDS SECTION --- */}
-                <div className="stats-grid">
-                    <div className="stat-card">
-                        <h3>Total Tasks</h3>
-                        <p className="stat-number">{totalTasks}</p>
-                    </div>
-                    <div className="stat-card">
-                        <h3>Completed</h3>
-                        <p className="stat-number">{completedTasks}</p>
-                    </div>
-                    <div className="stat-card progress-card">
-                        <h3>Progress</h3>
-                        <div className="progress-container">
-                            <div className="progress-bar" style={{width: `${project.progressPercentage}%`}}></div>
-                        </div>
-                        <p>{project.progressPercentage}% Done</p>
-                    </div>
-                </div>
-
                 <div className="tasks-section">
                     <h3>Checklist</h3>
                     
-                    {/* Add Task Button & Input */}
-                    <form onSubmit={handleAddTask} className="add-task-form">
+                    {/* 1. SIMPLIFIED STACKED FORM */}
+                    <form onSubmit={handleAddTask} className="simple-task-form">
                         <input 
                             type="text" 
-                            placeholder="Add a new task..." 
+                            placeholder="Task Title" 
                             value={newTaskTitle}
                             onChange={(e) => setNewTaskTitle(e.target.value)}
+                            required
+                            className="simple-input main-input"
                         />
-                        <button type="submit" className="add-btn">+ Add</button>
+                        <textarea 
+                            placeholder="Description" 
+                            value={newTaskDesc}
+                            onChange={(e) => setNewTaskDesc(e.target.value)}
+                            className="simple-input"
+                            rows="2"
+                        />
+                         <input 
+                            type="date" 
+                            value={newTaskDate}
+                            onChange={(e) => setNewTaskDate(e.target.value)}
+                            className="simple-input date-input"
+                        />
+                        <button type="submit" className="simple-add-btn">Add Task</button>
                     </form>
 
-                    {/* Task Checklist */}
                     <div className="task-list">
                         {project.tasks.map(task => (
+                            /* 2. RESTRUCTURED TASK ITEM */
                             <div key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
-                                <div onClick={() => handleToggle(task.id)} className="task-info">
+                                
+                                {/* LEFT SIDE: Checkbox + Title + Description */}
+                                <div onClick={() => handleToggle(task.id)} className="task-left-side">
                                     <div className="custom-checkbox">
                                         {task.completed && "✔"}
                                     </div>
-                                    <span>{task.title}</span>
+                                    <div className="task-text-content">
+                                        <span className="task-title">{task.title}</span>
+                                        {task.description && <p className="task-desc-preview">{task.description}</p>}
+                                    </div>
                                 </div>
-                                <button onClick={() => handleDelete(task.id)} className="delete-icon">✕</button>
+
+                                {/* RIGHT SIDE: Date + Delete Button */}
+                                <div className="task-right-side">
+                                     {/* Date on the right, no icon */}
+                                    {task.dueDate && <span className="task-date-right">{formatDate(task.dueDate)}</span>}
+                                    <button onClick={() => handleDelete(task.id)} className="delete-icon">✕</button>
+                                </div>
+
                             </div>
                         ))}
-                        {project.tasks.length === 0 && <p className="empty-state">No tasks yet. Add one above!</p>}
+                        {project.tasks.length === 0 && <p className="empty-state">No tasks yet.</p>}
                     </div>
                 </div>
             </div>

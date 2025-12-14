@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../services/api';
 
-const Login = () => {
+const Register = () => {
     const [formData, setFormData] = useState({
         username: '',
+        email: '',
         password: ''
     });
     const navigate = useNavigate();
@@ -16,24 +17,19 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await api.post('/auth/login', formData);
-            
-            // Save Data
-            localStorage.setItem('token', response.data.token);
-            localStorage.setItem('username', formData.username);
-
-            // Redirect
-            navigate('/dashboard');
+            await api.post('/auth/register', formData);
+            alert('Registration Successful! Please Login.');
+            navigate('/login');
         } catch (error) {
-            console.error('Login failed:', error);
-            alert('Invalid Username or Password');
+            console.error('Registration failed:', error);
+            alert('Registration failed. Username might be taken.');
         }
     };
 
     return (
         <div className="auth-container">
             <div className="auth-card">
-                <h2>Welcome Back</h2>
+                <h2>Create Account</h2>
                 <form onSubmit={handleSubmit}>
                     <input
                         className="auth-input"
@@ -46,6 +42,15 @@ const Login = () => {
                     />
                     <input
                         className="auth-input"
+                        type="email"
+                        name="email"
+                        placeholder="Email Address"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                    />
+                    <input
+                        className="auth-input"
                         type="password"
                         name="password"
                         placeholder="Password"
@@ -53,18 +58,18 @@ const Login = () => {
                         onChange={handleChange}
                         required
                     />
-                    <button type="submit" style={{ fontSize: '1.2rem', padding: '16px' }}>
-                        Login
+                    <button type="submit" style={{ fontSize: '1.2rem', padding: '16px', backgroundColor: '#3498db;' }}>
+                        Register
                     </button>
                 </form>
-                
+
                 <p className="auth-footer">
-                    New to TaskFlow? 
-                    <Link to="/register">Create an account</Link>
+                    Already have an account? 
+                    <Link to="/login">Login here</Link>
                 </p>
             </div>
         </div>
     );
 };
 
-export default Login;
+export default Register;

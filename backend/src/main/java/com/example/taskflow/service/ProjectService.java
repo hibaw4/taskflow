@@ -3,10 +3,10 @@ package com.example.taskflow.service;
 import com.example.taskflow.dto.ProjectDTO;
 import com.example.taskflow.dto.TaskDTO;
 import com.example.taskflow.model.Project;
-import com.example.taskflow.model.Task;
 import com.example.taskflow.model.User;
 import com.example.taskflow.repository.ProjectRepository;
 import com.example.taskflow.repository.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder; // <--- Import this!
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,24 +23,22 @@ public class ProjectService {
         this.userRepository = userRepository;
     }
 
-    // GET ALL (For User 1)
+    // 1. GET ALL (For the Logged-in User only)
     public List<ProjectDTO> getAllProjects() {
-        Long tempUserId = 1L; // HARDCODED for now
-        List<Project> projects = projectRepository.findByUserId(tempUserId);
+        User currentUser = getCurrentUser(); // <--- Dynamic
+        List<Project> projects = projectRepository.findByUserId(currentUser.getId());
 
-        // Convert Entity -> DTO
         return projects.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
-    // CREATE
+    // 2. CREATE (Assign to Logged-in User)
     public Project createProject(ProjectDTO dto) {
-        Long tempUserId = 1L; // HARDCODED
-        User user = userRepository.findById(tempUserId).orElseThrow();
+        User currentUser = getCurrentUser(); // <--- Dynamic
 
         Project project = new Project();
         project.setTitle(dto.getTitle());
         project.setDescription(dto.getDescription());
-        project.setUser(user);
+        project.setUser(currentUser); // Assign to the actual user
 
         return projectRepository.save(project);
     }
@@ -50,26 +48,39 @@ public class ProjectService {
         projectRepository.deleteById(id);
     }
 
-    // Helper: Converts Project Entity to ProjectDTO and calculates progress
+    // GET ONE
+    public ProjectDTO getProjectById(Long id) {
+        Project project = projectRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Project not found with id: " + id));
+        return convertToDTO(project);
+    }
+
+    // --- HELPER METHODS ---
+
+    // Extract the user from the Security Token (JWT)
+    private User getCurrentUser() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found: " + username));
+    }
+
     private ProjectDTO convertToDTO(Project project) {
         ProjectDTO dto = new ProjectDTO();
         dto.setId(project.getId());
         dto.setTitle(project.getTitle());
         dto.setDescription(project.getDescription());
 
-        // Map Tasks
         List<TaskDTO> taskDTOs = project.getTasks().stream().map(task -> {
             TaskDTO tDto = new TaskDTO();
             tDto.setId(task.getId());
             tDto.setTitle(task.getTitle());
-            tDto.setDescription(task.getDescription()); // <--- Add Description too
-            tDto.setDueDate(task.getDueDate());         // <--- ADD THIS LINE
+            tDto.setDescription(task.getDescription());
+            tDto.setDueDate(task.getDueDate());
             tDto.setCompleted(task.isCompleted());
             return tDto;
         }).collect(Collectors.toList());
         dto.setTasks(taskDTOs);
 
-        // CALCULATE PROGRESS
         if (taskDTOs.isEmpty()) {
             dto.setProgressPercentage(0);
         } else {
@@ -79,13 +90,5 @@ public class ProjectService {
         }
 
         return dto;
-    }
-
-    // Get ONE Project by ID (and convert to DTO)
-    public ProjectDTO getProjectById(Long id) {
-        Project project = projectRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Project not found with id: " + id));
-
-        return convertToDTO(project);
     }
 }
