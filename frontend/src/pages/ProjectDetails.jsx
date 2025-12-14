@@ -37,7 +37,6 @@ function ProjectDetails() {
                 dueDate: newTaskDate || null
             });
 
-            // Clear inputs
             setNewTaskTitle("");
             setNewTaskDesc("");
             setNewTaskDate("");
@@ -63,9 +62,13 @@ function ProjectDetails() {
 
     const formatDate = (dateString) => {
         if(!dateString) return "";
-        // Using localedateString for a simple, localized format like "12/31/2023"
         return new Date(dateString).toLocaleDateString();
     };
+
+    // 👇 1. ADD THIS MATH SECTION BACK
+    const totalTasks = project.tasks.length;
+    const completedTasks = project.tasks.filter(t => t.completed).length;
+    const progress = totalTasks === 0 ? 0 : Math.round((completedTasks / totalTasks) * 100);
 
     return (
         <div className="page-container">
@@ -78,10 +81,25 @@ function ProjectDetails() {
                     <p>{project.description}</p>
                 </div>
 
+                {/* 👇 2. ADD THIS STATS GRID BACK */}
+                <div className="stats-grid">
+                    <div className="stat-card">
+                        <h3>Total Tasks</h3>
+                        <p className="stat-number">{totalTasks}</p>
+                    </div>
+                    <div className="stat-card">
+                        <h3>Completed</h3>
+                        <p className="stat-number">{completedTasks}</p>
+                    </div>
+                    <div className="stat-card">
+                        <h3>Progress</h3>
+                        <p className="stat-number">{progress}%</p>
+                    </div>
+                </div>
+
                 <div className="tasks-section">
                     <h3>Checklist</h3>
                     
-                    {/* 1. SIMPLIFIED STACKED FORM */}
                     <form onSubmit={handleAddTask} className="simple-task-form">
                         <input 
                             type="text" 
@@ -109,10 +127,7 @@ function ProjectDetails() {
 
                     <div className="task-list">
                         {project.tasks.map(task => (
-                            /* 2. RESTRUCTURED TASK ITEM */
                             <div key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
-                                
-                                {/* LEFT SIDE: Checkbox + Title + Description */}
                                 <div onClick={() => handleToggle(task.id)} className="task-left-side">
                                     <div className="custom-checkbox">
                                         {task.completed && "✔"}
@@ -123,13 +138,10 @@ function ProjectDetails() {
                                     </div>
                                 </div>
 
-                                {/* RIGHT SIDE: Date + Delete Button */}
                                 <div className="task-right-side">
-                                     {/* Date on the right, no icon */}
                                     {task.dueDate && <span className="task-date-right">{formatDate(task.dueDate)}</span>}
                                     <button onClick={() => handleDelete(task.id)} className="delete-icon">✕</button>
                                 </div>
-
                             </div>
                         ))}
                         {project.tasks.length === 0 && <p className="empty-state">No tasks yet.</p>}
