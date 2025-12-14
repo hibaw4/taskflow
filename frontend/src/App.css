@@ -1,42 +1,258 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* =========================================
+   1. BASE STYLES & LAYOUT
+   ========================================= */
+body { 
+    margin: 0; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background-color: #f8f9fa; 
+    color: #333; 
+    font-size: 18px; /* Increased base font size */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+* { box-sizing: border-box; }
+
+/* Navbar */
+.navbar { 
+    background-color: #2c3e50;
+    color: white;
+    padding: 1.5rem 3rem; /* Larger navbar padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.navbar h2 { margin: 0; font-size: 2rem; }
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 30px;
+    font-weight: 600;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.navbar a:hover { text-decoration: underline; }
+
+/* Main Layout */
+.content { 
+    max-width: 1400px; /* Wider container for bigger cards */
+    margin: 50px auto; 
+    padding: 0 40px; 
+}
+.page-container { min-height: 100vh; }
+.back-link { 
+    display: inline-block; 
+    margin-bottom: 30px; 
+    color: #666; 
+    text-decoration: none; 
+    font-size: 1.1rem;
+}
+.back-link:hover { color: #2c3e50; }
+
+/* =========================================
+   2. DASHBOARD & PROJECT CARDS
+   ========================================= */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.dashboard-header h1 { font-size: 2.5rem; color: #2c3e50; }
+
+.project-grid { 
+    display: grid; 
+    /* Increased min-width to 350px for wider cards */
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
+    gap: 30px; 
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.project-card { 
+    background: white; 
+    padding: 30px; /* Increased padding */
+    border-radius: 20px; /* More rounded corners */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #fff;
+}
+.project-card:hover { 
+    transform: translateY(-8px); 
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+}
+.project-card h3 { 
+    margin-top: 0; 
+    font-size: 1.6rem; 
+    color: #2c3e50; 
+    margin-bottom: 15px;
+}
+.project-card p { line-height: 1.6; color: #666; }
+
+/* Progress Bars */
+.progress-container { 
+    background: #e0e0e0; 
+    height: 12px; /* Thicker bar */
+    border-radius: 10px; 
+    overflow: hidden; 
+    margin: 20px 0 10px 0; 
+}
+.progress-bar { 
+    background: #27ae60; 
+    height: 100%; 
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out; 
+}
+.progress-text { font-size: 14px; font-weight: bold; color: #7f8c8d; text-align: right; margin: 0; }
+
+
+/* =========================================
+   3. BUTTONS & FORMS
+   ========================================= */
+button { 
+    background: #3498db; 
+    color: white; 
+    border: none; 
+    padding: 14px 28px; /* Bigger button area */
+    border-radius: 50px; /* Fully rounded (Pill shape) */
+    cursor: pointer; 
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.2s;
+    width: 100%; 
+    box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+}
+button:hover { 
+    background: #2980b9; 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.3);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.create-btn { 
+    background-color: #27ae60; 
+    width: auto; 
+    font-size: 1.1rem;
+}
+.create-btn:hover { background-color: #219150; }
+
+.create-project-form {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-left: none; /* Removed the side border for a cleaner look */
+}
+.create-project-form input, .create-project-form textarea {
+    padding: 15px;
+    border: 2px solid #eef2f5;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 16px;
+    transition: border-color 0.2s;
+}
+.create-project-form input:focus, .create-project-form textarea:focus {
+    outline: none;
+    border-color: #3498db;
 }
 
-.card {
-  padding: 2em;
+/* =========================================
+   4. PROJECT DETAILS (STATS & TASKS)
+   ========================================= */
+.header-section { margin-bottom: 40px; }
+.header-section h1 { font-size: 3rem; margin-bottom: 10px; }
+.header-section p { font-size: 1.2rem; color: #7f8c8d; }
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin: 40px 0;
 }
 
-.read-the-docs {
-  color: #888;
+.stat-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-align: center;
+    border: none;
 }
+.stat-card h3 { margin: 0; color: #95a5a6; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+.stat-number { font-size: 3rem; font-weight: 800; color: #2c3e50; margin: 15px 0 0 0; }
+
+/* Task List Styles */
+.tasks-section { 
+    background: white; 
+    padding: 40px; 
+    border-radius: 25px; 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05); 
+}
+.tasks-section h3 { border-bottom: 2px solid #f0f0f0; padding-bottom: 15px; margin-top: 0; margin-bottom: 30px; font-size: 1.5rem; color: #2c3e50; }
+
+.add-task-form { display: flex; gap: 15px; margin-bottom: 30px; }
+.add-task-form input { flex: 1; padding: 15px; border-radius: 50px; border: 2px solid #eef2f5; padding-left: 25px; font-size: 16px; }
+.add-btn { width: auto; background: #2c3e50; border-radius: 50px; padding: 0 35px; }
+
+.task-item { 
+    padding: 20px; 
+    margin-bottom: 15px; 
+    border-radius: 15px;
+    border-bottom: none; 
+    background: #f9fbfd;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    transition: background 0.2s;
+}
+.task-item:hover { background-color: #f0f4f8; }
+
+.task-info { display: flex; align-items: center; gap: 20px; cursor: pointer; flex: 1; }
+.task-info span { font-size: 18px; }
+
+/* Custom Checkbox */
+.custom-checkbox {
+    width: 28px; height: 28px;
+    border: 2px solid #cbd5e0; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; background: white;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+/* Completed State */
+.task-item.completed span { text-decoration: line-through; color: #aaa; }
+.task-item.completed .custom-checkbox {
+    background: #27ae60;
+    border-color: #27ae60;
+}
+
+.delete-project-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    color: #bdc3c7;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    font-size: 1.2rem;
+    line-height: 1;
+    box-shadow: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-project-btn:hover {
+    background: #fee;
+    color: #e74c3c;
+    transform: scale(1.1);
+    box-shadow: none;
+}
+
+.delete-icon {
+    background: none; color: #ddd; padding: 10px; width: auto; font-size: 1.5rem; box-shadow: none;
+}
+.delete-icon:hover { background: #fff0f0; color: #e74c3c; border-radius: 12px; transform: none; box-shadow: none; }
+
+.empty-state { text-align: center; color: #bdc3c7; font-style: italic; margin-top: 40px; font-size: 1.1rem; }
