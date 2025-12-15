@@ -8,7 +8,6 @@ function ProjectDetails() {
     const { id } = useParams();
     const [project, setProject] = useState(null);
     
-    // State for Inputs
     const [newTaskTitle, setNewTaskTitle] = useState("");
     const [newTaskDesc, setNewTaskDesc] = useState("");
     const [newTaskDate, setNewTaskDate] = useState("");
@@ -65,7 +64,7 @@ function ProjectDetails() {
         return new Date(dateString).toLocaleDateString();
     };
 
-    // 👇 1. ADD THIS MATH SECTION BACK
+    // To calculate total tasks, completed tasks, and progress
     const totalTasks = project.tasks.length;
     const completedTasks = project.tasks.filter(t => t.completed).length;
     const progress = totalTasks === 0 ? 0 : Math.round((completedTasks / totalTasks) * 100);
@@ -81,7 +80,6 @@ function ProjectDetails() {
                     <p>{project.description}</p>
                 </div>
 
-                {/* 👇 2. ADD THIS STATS GRID BACK */}
                 <div className="stats-grid">
                     <div className="stat-card">
                         <h3>Total Tasks</h3>

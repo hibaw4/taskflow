@@ -1,22 +1,24 @@
 import api from './api';
 
+// To get all projects
 export const getAllProjects = async () => {
     const response = await api.get('/projects');
     return response.data;
 };
 
-// 👇 THIS PART IS OFTEN MISSING. DO YOU HAVE IT?
+// To get project by ID
 export const getProjectById = async (id) => {
     const response = await api.get(`/projects/${id}`);
     return response.data;
 };
-// ------------------------------------------------
 
+// To create a new project
 export const createProject = async (projectData) => {
     const response = await api.post('/projects', projectData);
     return response.data;
 };
 
+// To delete a project
 export const deleteProject = async (id) => {
     await api.delete(`/projects/${id}`);
 };

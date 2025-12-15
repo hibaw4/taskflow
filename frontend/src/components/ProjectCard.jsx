@@ -8,7 +8,7 @@ function ProjectCard({ project, onDelete}) {
             <button 
                 className="delete-project-btn"
                 onClick={(e) => {
-                    e.stopPropagation(); // Prevents accidental clicks
+                    e.stopPropagation(); // To prevent accidental clicks
                     onDelete(project.id);
                 }}
                 title="Delete Project"

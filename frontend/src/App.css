@@ -6,7 +6,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
     background-color: #f8f9fa; 
     color: #333; 
-    font-size: 18px; /* Increased base font size */
+    font-size: 18px;
 }
 
 * { box-sizing: border-box; }
@@ -15,7 +15,7 @@ body {
 .navbar { 
     background-color: #2c3e50;
     color: white;
-    padding: 1.5rem 3rem; /* Larger navbar padding */
+    padding: 1.5rem 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -32,7 +32,7 @@ body {
 
 /* Main Layout */
 .content { 
-    max-width: 1400px; /* Wider container for bigger cards */
+    max-width: 1400px;
     margin: 50px auto; 
     padding: 0 40px; 
 }
@@ -59,15 +59,14 @@ body {
 
 .project-grid { 
     display: grid; 
-    /* Increased min-width to 350px for wider cards */
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
     gap: 30px; 
 }
 
 .project-card { 
     background: white; 
-    padding: 30px; /* Increased padding */
-    border-radius: 20px; /* More rounded corners */
+    padding: 30px;
+    border-radius: 20px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
     transition: transform 0.2s, box-shadow 0.2s;
     border: 1px solid #fff;
@@ -87,7 +86,7 @@ body {
 /* Progress Bars */
 .progress-container { 
     background: #e0e0e0; 
-    height: 12px; /* Thicker bar */
+    height: 12px;
     border-radius: 10px; 
     overflow: hidden; 
     margin: 20px 0 10px 0; 
@@ -108,8 +107,8 @@ button {
     background: #3498db; 
     color: white; 
     border: none; 
-    padding: 14px 28px; /* Bigger button area */
-    border-radius: 8px; /* Fully rounded (Pill shape) */
+    padding: 14px 28px;
+    border-radius: 8px;
     cursor: pointer; 
     font-weight: 700;
     font-size: 1rem;
@@ -139,7 +138,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    border-left: none; /* Removed the side border for a cleaner look */
+    border-left: none;
 }
 .create-project-form input, .create-project-form textarea {
     padding: 15px;
@@ -208,8 +207,6 @@ button:hover {
 .task-info { display: flex; align-items: center; gap: 20px; cursor: pointer; flex: 1; }
 .task-info span { font-size: 18px; }
 
-
-
 /* Custom Checkbox */
 .custom-checkbox {
     width: 28px; height: 28px;
@@ -219,7 +216,6 @@ button:hover {
     font-size: 16px;
     transition: all 0.2s ease;
 }
-
 
 /* Completed State */
 .task-item.completed span { text-decoration: line-through; color: #aaa; }
@@ -233,37 +229,36 @@ button:hover {
 /* 1. The Main Bar */
 .navbar {
     display: flex;
-    justify-content: space-between; /* Pushes Logo to left, User to right */
-    align-items: center;            /* Vertically centers everything */
+    justify-content: space-between;
+    align-items: center;
     padding: 0.8rem 2rem;
-    background-color: #2c3e50;      /* Dark Blue (Matches your screenshot) */
+    background-color: #2c3e50;
     color: white;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Nice shadow */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     margin-bottom: 2rem;
     text-decoration: none !important;
 }
 
-/* 2. Brand Name (TaskFlow) */
+/* 2. App name (Taskflow) */
 .navbar-brand {
-    font-size: 1.8rem;      /* Bigger text */
-    font-weight: 800;       /* Bold */
-    color: white;           /* White color */
-    text-decoration: none !important;  /* 🚫 REMOVES UNDERLINE */
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: white;
+    text-decoration: none !important;
     letter-spacing: 0.5px;
     transition: color 0.2s;
 }
 
 .navbar-brand:hover {
-    color: white; /* Light blue on hover */
+    color: white;
     text-decoration: none !important;
 }
 
 /* 3. Right Side Container (User + Button) */
-/* 👇 THIS IS THE FIX for the side-by-side issue 👇 */
 .navbar-user-section {
-    display: flex;        /* Makes children sit in a row */
-    align-items: center;  /* Vertically aligns text with button */
-    gap: 1.5rem;          /* Space between "Hello User" and Button */
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
 }
 
 /* 4. Username Text */
@@ -281,7 +276,6 @@ button:hover {
     color: white;
     cursor: pointer;
     padding: 8px;
-    /* border-radius: 50%; Makes it a circle */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -302,7 +296,7 @@ button:hover {
 /* The Container */
 .add-task-form {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
+    flex-direction: column;
     gap: 15px;
     margin-bottom: 30px;
     background: #f8f9fa;
@@ -318,7 +312,7 @@ button:hover {
 
 /* Specific Inputs */
 .task-input-title {
-    flex: 2; /* Title takes up more space */
+    flex: 2;
     padding: 12px 15px;
     border: 2px solid #eef2f5;
     border-radius: 8px;
@@ -326,7 +320,7 @@ button:hover {
 }
 
 .task-input-date {
-    flex: 1; /* Date takes less space */
+    flex: 1;
     padding: 12px 15px;
     border: 2px solid #eef2f5;
     border-radius: 8px;
@@ -339,22 +333,17 @@ button:hover {
     border: 2px solid #eef2f5;
     border-radius: 8px;
     font-family: inherit;
-    resize: vertical; /* Allow user to stretch height */
+    resize: vertical;
 }
 
 /* Refined Add Button */
 .add-btn {
-    align-self: flex-start; /* Aligns button to left */
+    align-self: flex-start;
     width: auto;
     padding: 10px 25px;
     font-size: 0.9rem;
 }
 
-/* =========================================
-   TASK LIST ITEM UPDATES
-   ========================================= */
-
-/* Better text alignment inside the task row */
 /* =========================================
    1. SIMPLE STACKED TASK FORM
    ========================================= */
@@ -367,10 +356,10 @@ button:hover {
 
 .simple-task-form {
     display: flex;
-    flex-direction: column; /* Forces vertical stacking */
-    gap: 12px;              /* Space between inputs */
+    flex-direction: column;
+    gap: 12px;
     margin-bottom: 40px;
-    max-width: 600px;       /* Prevents it from being too wide on large screens */
+    max-width: 600px;
 }
 
 /* Uniform Input Styling */
@@ -389,12 +378,10 @@ button:hover {
     border-color: #3498db;
 }
 
-/* Make the title input slightly more prominent */
 .main-input {
     font-weight: 600;
 }
 
-/* Style the date picker */
 .date-input {
     color: #7f8c8d;
 }
@@ -407,15 +394,14 @@ button:hover {
     border-radius: 10px;
     font-weight: 600;
     margin-top: 10px;
-    width: auto; /* Let it shrink to fit text */
-    align-self: flex-start; /* Align to the left */
+    width: auto;
+    align-self: flex-start;
 }
 .simple-add-btn:hover {
     background-color: #3498db;
     transform: translateY(-2px);
     box-shadow: none;
 }
-
 
 /* =========================================
    2. RESTRUCTURED TASK LIST ITEM
@@ -429,19 +415,19 @@ button:hover {
     background: #f9fbfd;
     border: 1px solid #eef2f5;
     display: flex; 
-    justify-content: space-between; /* Pushes left and right sides apart */
-    align-items: center; /* Centers them vertically */
+    justify-content: space-between;
+    align-items: center;
     transition: all 0.2s;
 }
 .task-item:hover { background-color: #f0f4f8; border-color: #dce4ec; }
 
-/* LEFT SIDE: Checkbox & Text */
+/* Checkbox & Text */
 .task-left-side {
     display: flex;
-    align-items: flex-start; /* Align checkbox with the first line of text */
+    align-items: flex-start;
     gap: 15px;
     cursor: pointer;
-    flex: 1; /* Takes available space pushing right side over */
+    flex: 1;
 }
 
 .task-text-content {
@@ -461,30 +447,29 @@ button:hover {
     color: #95a5a6;
 }
 
-/* RIGHT SIDE: Date & Delete Button */
+/* Date & Delete Button */
 .task-right-side {
     display: flex;
     align-items: center;
-    gap: 20px; /* Space between date and delete X */
+    gap: 20px;
 }
 
-/* The Date on the right (No Icon) */
 .task-date-right {
     font-size: 0.9rem;
     color: #7f8c8d;
     font-weight: 500;
-    white-space: nowrap; /* Keeps date on one line */
+    white-space: nowrap;
 }
 
-/* Custom Checkbox (Keep existing styles) */
+/* Custom Checkbox */
 .custom-checkbox {
-    width: 24px; height: 24px; /* Slightly smaller */
+    width: 24px; height: 24px;
     border: 2px solid #cbd5e0; border-radius: 6px;
     display: flex; align-items: center; justify-content: center;
     color: white; background: white;
-    font-size: 14px; flex-shrink: 0; /* Prevents squishing */
+    font-size: 14px; flex-shrink: 0;
     transition: all 0.2s ease;
-    margin-top: 2px; /* Align with text top */
+    margin-top: 2px;
 }
 
 /* Completed State Updates */
@@ -526,11 +511,11 @@ button:hover {
 .empty-state { text-align: center; color: #bdc3c7; font-style: italic; margin-top: 40px; font-size: 1.1rem; }
 
 .auth-container {
-    min-height: 100vh;           /* Takes full screen height */
-    background-color: #2c3e50;   /* MATCHES NAVBAR COLOR */
+    min-height: 100vh;
+    background-color: #2c3e50;
     display: flex;
-    align-items: center;         /* Centers vertically */
-    justify-content: center;     /* Centers horizontally */
+    align-items: center;
+    justify-content: center;
     padding: 20px;
 }
 
@@ -538,16 +523,16 @@ button:hover {
 .auth-card {
     background: white;
     width: 100%;
-    max-width: 500px;            /* Wider card */
-    padding: 3.5rem;             /* Big spacing inside */
-    border-radius: 20px;         /* Smooth corners */
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2); /* Deep shadow */
+    max-width: 500px;
+    padding: 3.5rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
     text-align: center;
 }
 
 /* Big Heading */
 .auth-card h2 {
-    font-size: 2.8rem;           /* Much bigger text */
+    font-size: 2.8rem;
     color: #2c3e50;
     margin-bottom: 2rem;
     font-weight: 800;
@@ -556,10 +541,10 @@ button:hover {
 /* Big Inputs */
 .auth-input {
     width: 100%;
-    padding: 18px 25px;          /* Taller inputs */
-    font-size: 1.2rem;           /* Bigger typing text */
+    padding: 18px 25px;
+    font-size: 1.2rem;
     border: 2px solid #e0e0e0;
-    border-radius: 8px;         /* Pill shape */
+    border-radius: 8px;
     margin-bottom: 1.5rem;
     background-color: #f9f9f9;
     transition: all 0.2s;
@@ -571,7 +556,6 @@ button:hover {
     outline: none;
 }
 
-/* Link Text at bottom */
 .auth-footer {
     margin-top: 2rem;
     font-size: 1.1rem;

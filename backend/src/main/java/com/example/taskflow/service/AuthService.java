@@ -16,7 +16,6 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
 
-    // Note: AuthenticationManager is REMOVED
     public AuthService(UserRepository userRepository,
                        PasswordEncoder passwordEncoder,
                        JwtUtil jwtUtil) {
@@ -25,7 +24,7 @@ public class AuthService {
         this.jwtUtil = jwtUtil;
     }
 
-    // 1. REGISTER (Same as before)
+    // 1. Register
     public Map<String, String> register(User user) {
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
             throw new RuntimeException("Username already exists");
@@ -39,7 +38,7 @@ public class AuthService {
         return response;
     }
 
-    // 2. LOGIN (Updated for Manual Check)
+    // 2. Login
     public Map<String, String> login(String username, String password) {
         // A. Find the user manually
         User user = userRepository.findByUsername(username)

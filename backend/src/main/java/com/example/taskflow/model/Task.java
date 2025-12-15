@@ -21,7 +21,7 @@ public class Task {
     private String title;
     private String description;
     private LocalDate dueDate;
-    @Column(name = "is_completed")
+    @Column(name = "is_completed") // Task completion status
     private boolean isCompleted = false;
 
     @ManyToOne

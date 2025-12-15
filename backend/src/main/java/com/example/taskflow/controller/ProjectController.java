@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/projects")
-@CrossOrigin(origins = "http://localhost:5173") // Allow React
+@CrossOrigin(origins = "http://localhost:5173") // To allow the frontend
 public class ProjectController {
 
     private final ProjectService projectService;

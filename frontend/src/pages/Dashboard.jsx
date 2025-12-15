@@ -5,9 +5,8 @@ import ProjectCard from '../components/ProjectCard';
 
 function Dashboard() {
     const [projects, setProjects] = useState([]);
-    const [showForm, setShowForm] = useState(false); // Toggle form visibility
+    const [showForm, setShowForm] = useState(false);
     
-    // Form State
     const [newTitle, setNewTitle] = useState("");
     const [newDesc, setNewDesc] = useState("");
 
@@ -59,7 +58,7 @@ function Dashboard() {
                     </button>
                 </div>
 
-                {/* The Create Form (Only shows if showForm is true) */}
+                {/* Create project form */}
                 {showForm && (
                     <form onSubmit={handleCreate} className="create-project-form">
                         <input 

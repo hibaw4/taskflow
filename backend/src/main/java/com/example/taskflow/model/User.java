@@ -10,9 +10,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-@Data                 // <--- Adds Getters & Setters
-@NoArgsConstructor    // <--- Adds empty constructor
-@AllArgsConstructor   // <--- Adds full constructor
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -25,7 +25,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(unique = true, nullable = false) // Defines constraints for Hibernate
+    @Column(unique = true, nullable = false)
     private String username;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

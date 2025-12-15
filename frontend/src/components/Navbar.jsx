@@ -14,12 +14,12 @@ function Navbar() {
 
     return (
         <nav className="navbar">
-            {/* Left: Brand Logo */}
+            {/* Logo */}
             <Link to="/dashboard" className="navbar-brand">
                 TaskFlow
             </Link>
 
-            {/* Right: User Section (Name + Logout) */}
+            {/* User Section (Name + Logout) */}
             <div className="navbar-user-section">
                 <span className="navbar-username">
                     <strong>{username}</strong>

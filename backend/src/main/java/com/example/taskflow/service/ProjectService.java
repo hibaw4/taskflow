@@ -23,32 +23,32 @@ public class ProjectService {
         this.userRepository = userRepository;
     }
 
-    // 1. GET ALL (For the Logged-in User only)
+    // 1. Get all for the logged in user
     public List<ProjectDTO> getAllProjects() {
-        User currentUser = getCurrentUser(); // <--- Dynamic
+        User currentUser = getCurrentUser();
         List<Project> projects = projectRepository.findByUserId(currentUser.getId());
 
         return projects.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
-    // 2. CREATE (Assign to Logged-in User)
+    // 2. Create project assigned to logged in user
     public Project createProject(ProjectDTO dto) {
-        User currentUser = getCurrentUser(); // <--- Dynamic
+        User currentUser = getCurrentUser();
 
         Project project = new Project();
         project.setTitle(dto.getTitle());
         project.setDescription(dto.getDescription());
-        project.setUser(currentUser); // Assign to the actual user
+        project.setUser(currentUser);
 
         return projectRepository.save(project);
     }
 
-    // DELETE
+    // Delete a project
     public void deleteProject(Long id) {
         projectRepository.deleteById(id);
     }
 
-    // GET ONE
+    // Get a project by ID
     public ProjectDTO getProjectById(Long id) {
         Project project = projectRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Project not found with id: " + id));
