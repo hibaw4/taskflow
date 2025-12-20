@@ -1,6 +1,6 @@
 # 📝 TaskFlow
 
-TaskFlow is a full-stack project tasks management application designed to help users organize projects, track progress, and manage tasks with a simple, modern user interface.
+**TaskFlow** is a full-stack project tasks management application designed to help users organize projects, track progress, and manage tasks with a simple, modern user interface.
 
 ## 📸 Interface & Features
 ![Register page](images/registerpage.jpg)
@@ -34,17 +34,24 @@ The application is built on a relational database model linking **Users**, **Pro
 ## 🚀 Technologies Used
 
 ### Backend (API)
-- **Java** (JDK 21)
-- **Spring Boot** (Web, Data JPA, Security)
-- **PostgreSQL** (Database)
-- **Hibernate** (ORM)
-- **JWT** (JSON Web Tokens)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)
+![JUnit5](https://img.shields.io/badge/JUnit5-25A162?style=for-the-badge&logo=junit5&logoColor=white)
 
 ### Frontend (Client)
-- **React.js** (Vite)
-- **React Router** (Navigation)
-- **Axios** (HTTP Client)
-- **Custom CSS** (Responsive UI)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+
+### DevOps & Tools
+![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
+![IntelliJ IDEA](https://img.shields.io/badge/IntelliJ_IDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
 
 ---
 
