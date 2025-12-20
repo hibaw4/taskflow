@@ -55,6 +55,11 @@ The easiest way to run the application is using the provided automation scripts 
 ### 1. Prerequisites
 - Ensure **Docker Desktop** is installed and running.
 - Create a `.env` file in the **root directory** of the project to configure your environment variables (Database credentials, JWT secret, etc.).
+> **💡 Tip: How to generate a Secret Key**
+> * **Git Bash (Windows):** Run `openssl rand -base64 32` directly.
+> * **CMD / VS Code Terminal:** Run the same command (requires OpenSSL installed).
+> * **Online:** Alternatively, use any **online password generator** to create a long, random string.
+
 ```bash
 JWT_SECRET_KEY=YourSecretHere
 POSTGRES_DB=taskflow
