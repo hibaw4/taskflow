@@ -8,6 +8,8 @@ const Register = () => {
         email: '',
         password: ''
     });
+    
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -49,16 +51,31 @@ const Register = () => {
                         onChange={handleChange}
                         required
                     />
-                    <input
-                        className="auth-input"
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
-                    <button type="submit" style={{ fontSize: '1.2rem', padding: '16px', backgroundColor: '#3498db;' }}>
+                    
+                    <div className="password-wrapper">
+                        <input
+                            className="auth-input"
+                            type={showPassword ? "text" : "password"}
+                            name="password"
+                            placeholder="Password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                        />
+                        <button
+                            type="button"
+                            className="eye-button"
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={showPassword ? "#3498db" : "#888"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                                {!showPassword && <line x1="1" y1="1" x2="23" y2="23"></line>}
+                            </svg>
+                        </button>
+                    </div>
+
+                    <button type="submit" style={{ fontSize: '1.2rem', padding: '16px', backgroundColor: '#3498db', color: 'white' }}>
                         Register
                     </button>
                 </form>

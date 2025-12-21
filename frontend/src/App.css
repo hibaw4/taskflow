@@ -572,3 +572,42 @@ button:hover {
 .auth-footer a:hover {
     text-decoration: underline;
 }
+
+/* =========================================
+   PASSWORD VISIBILITY TOGGLE
+   ========================================= */
+
+/* Wrap the input and the button */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Ensure the input inside the wrapper looks like the others */
+.password-wrapper .auth-input {
+    margin-bottom: 1.5rem; /* Matches your existing auth-input margin */
+    padding-right: 50px;   /* Make room for the eye icon so text doesn't overlap */
+}
+
+/* Position the eye button absolutely inside the wrapper */
+.eye-button {
+    position: absolute;
+    right: 15px;
+    top: 38%; /* Adjusting to account for the margin-bottom of the input */
+    transform: translateY(-50%);
+    background: none !important; /* Force remove blue background */
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    width: auto !important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: none !important;
+}
+
+.eye-button:hover {
+    transform: translateY(-50%) scale(1.1) !important;
+    background: none !important;
+}
