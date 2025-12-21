@@ -171,3 +171,7 @@ To run the tests manually, use the following command in the `backend` directory:
 ./mvnw test
 ```
 Or run each test manually in test files.
+
+## 🚀 Future Improvements
+- **DDD Architecture:** Transition from a layered architecture to full Domain-Driven Design (DDD) by defining clear Bounded Contexts and Aggregate Roots to better manage complex business logic.
+- **Server-Side Pagination:** Implement Spring Data Pagination to fetch data in small chunks, ensuring the app remains fast and scalable even as the number of projects and tasks is bigger.
